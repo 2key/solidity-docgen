@@ -50,7 +50,7 @@ export async function docgen(options: Options) {
 
 async function getReadmes(filter: Filter): Promise<VFile[]> {
   const readmes = await filter.glob('README.*');
-  return await Promise.all(
+  return Promise.all(
     readmes.map(async readmePath => ({
       path: path.relative(filter.root, readmePath),
       contents: await fs.readFile(readmePath, 'utf8'),
